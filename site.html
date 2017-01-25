@@ -1,0 +1,8 @@
+<span>{{site.model.name}}</span>
+<br>
+<h4>Devices:</h4>
+<ul>
+    <li ng-repeat="device in site.model.devices">
+        <a ng-href="/device/{{device.id}}">{{device.name}}</a>
+    </li>
+</ul>
