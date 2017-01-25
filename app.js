@@ -60,28 +60,22 @@ angular.module('app', ['ngCookies', 'ngRoute'])
     .service('SiteService', ['$q', '$http', '$cookies', 'ApiUrl', function($q, $http, $cookies, ApiUrl) {
         return {
             retrieve: function() {
-                var d = $q.defer();
-                $http.get(ApiUrl + 'site.php?api=JSON&a=retrieve&sid=' + $cookies.get('sid'))
+                return $http.get(ApiUrl + 'site.php?api=JSON&a=retrieve&sid=' + $cookies.get('sid'))
                     .then(function(response) {
-                        d.resolve(response.data.sites)
-                    }, d.reject);
-                return d.promise;
+                        return $q.when(response.data.sites)
+                    }, $q.reject);
             },
             byId: function(siteId) {
-                var d = $q.defer();
-                $http.get(ApiUrl + 'site.php?api=JSON&a=retrieve&siteid=' + siteId + '&sid=' + $cookies.get('sid'))
+                return $http.get(ApiUrl + 'site.php?api=JSON&a=retrieve&siteid=' + siteId + '&sid=' + $cookies.get('sid'))
                     .then(function(response) {
-                        d.resolve(response.data.sites[siteId])
-                    }, d.reject);
-                return d.promise;
+                        return $q.when(response.data.sites[siteId])
+                    }, $q.reject);
             },
             device: function(deviceId) {
-                var d = $q.defer();
-                $http.get(ApiUrl + 'device.php?api=JSON&a=retrieve&deviceid[]=' + deviceId + '&sid=' + $cookies.get('sid'))
+                return $http.get(ApiUrl + 'device.php?api=JSON&a=retrieve&deviceid[]=' + deviceId + '&sid=' + $cookies.get('sid'))
                     .then(function(response) {
-                        d.resolve(response.data.devices[deviceId])
-                    }, d.reject);
-                return d.promise;
+                        return $q.when(response.data.devices[deviceId])
+                    }, $q.reject);
             }
         }
     }])
