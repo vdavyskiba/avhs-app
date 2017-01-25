@@ -101,6 +101,6 @@ angular.module('app', ['ngCookies', 'ngRoute'])
     .controller('Site', ['site', function(site) {
         this.model = site;
     }])
-    .controller('Device', ['site', function(device) {
+    .controller('Device', ['device', function(device) {
         this.model = device;
     }]);
